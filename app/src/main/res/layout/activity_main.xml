@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D1C560"
+    tools:context="com.kw.sharaf.MainActivity">
+    
+    
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="60dp">
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="LECTURES"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            android:textSize="20dp"
+            />
+    </RelativeLayout>
+
+    <ListView
+        android:layout_below="@+id/top"
+        android:layout_above="@id/down"
+        android:id="@+id/listMusic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="15dp"
+        />
+
+    <RelativeLayout
+        android:id="@+id/down"
+
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="130dp"
+
+        >
+        
+        <SeekBar
+            android:id="@+id/seekBar"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+
+            />
+
+        <TextView
+            android:id="@+id/currentTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/seekBar"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_marginTop="13dp"
+            android:text="00:00" />
+
+        <TextView
+            android:id="@+id/totalTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="13dp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/seekBar"
+            android:layout_marginTop="13dp"
+            android:text="00:00" />
+
+        <LinearLayout
+            android:id="@+id/ctrl"
+            android:layout_below="@+id/seekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            >
+
+            <ImageButton
+                android:id="@+id/previousButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/prev" />
+
+            <Button
+
+                android:id="@+id/playPauseButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/ply"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+
+                />
+
+            <ImageButton
+                android:id="@+id/nextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:background="@drawable/next" />
+        </LinearLayout>
+
+
+
+
+
+    </RelativeLayout>
+
+
+  
+
+</RelativeLayout>
