@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D1C560"
+    android:background="@drawable/sh2"
     tools:context="com.kw.sharaf.MainActivity">
     
     
@@ -22,7 +22,7 @@
             android:textColor="@color/black"
             android:textStyle="bold"
             android:textAlignment="center"
-            android:textSize="20dp"
+            android:textSize="20sp"
             />
     </RelativeLayout>
 
@@ -32,6 +32,7 @@
         android:id="@+id/listMusic"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
         android:layout_marginTop="15dp"
         android:layout_marginBottom="15dp"
         />
@@ -70,7 +71,7 @@
             android:id="@+id/totalTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="13dp"
+            android:textSize="13sp"
             android:textStyle="bold"
             android:textColor="@color/black"
             android:layout_alignParentEnd="true"

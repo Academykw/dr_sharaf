@@ -7,9 +7,9 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
+
 import android.view.View;
-import android.widget.Adapter;
+
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -17,10 +17,10 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import java.io.IOException;
-import java.lang.reflect.Array;
+
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
@@ -60,7 +60,11 @@ public class MainActivity extends AppCompatActivity {
             if (files != null) {
             for(String file: files){
                 if (!file.endsWith(".mp3") || !file.endsWith(".amr")) {
+
+                   /* String fileN =file.replace(".mp3", "")
+                            .replace(".amr", "");*/
                     musicFiles.add(file);
+
                 }
 
 
@@ -69,10 +73,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-       /* // Display total time
-        int totalTime = mediaPlayer.getDuration();
-        total.setText(formatTime(totalTime));
-*/
+
 
 
         //set music to listview
@@ -92,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
                 seekBar.setMax(mediaPlayer.getDuration());
                 int totalTime = mediaPlayer.getDuration();
                 total.setText(formatTime(totalTime));
+                updateSeekBar();
 
             }
         });
@@ -108,33 +110,8 @@ public class MainActivity extends AppCompatActivity {
                     mediaPlayer.setDataSource(getAssets().openFd("music/" + musicFiles.get(position)));
                     mediaPlayer.prepare();
 
-                    // Display total time
-                   /* int totalTime = mediaPlayer.getDuration();
-                    total.setText(formatTime(totalTime));
-
-                    handler.removeCallbacks(updateSeekBar);
-*/
-
-                   // handler.postDelayed(this, 1000);
 
 
-
-
-                    // Update SeekBar and current time based on music progress
-         /*           updateSeekBar = new Runnable() {
-                        @Override
-                        public void run() {
-                            if (mediaPlayer != null) {
-                                int currentTime = mediaPlayer.getCurrentPosition();
-                                seekBar.setProgress(currentTime);
-                                current.setText(formatTime(currentTime));
-                                handler.postDelayed(this, 1);  // Update every second
-                            }
-                        }
-                    };
-
-
-*/
 
                 }catch (IOException e){
                     e.printStackTrace();
@@ -179,18 +156,29 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) {
-               // handler.removeCallbacks(updateSeekBar);
+                handler.removeCallbacks( updateSeekBar);
 
 
             }
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                //handler.postDelayed(updateSeekBar, 0);
+                updateSeekBar();
 
             }
 
         });
+
+        mediaPlayer.setOnCompletionListener(mp -> {
+
+            seekBar.setProgress(0);
+            current.setText("00:00");
+            updateSeekBar();
+           // handler.removeCallbacks(updateSeekBar);
+
+                }
+
+        );
 
 
 
@@ -230,10 +218,17 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    @SuppressLint("DefaultLocale")
     private String formatTime(int millis) {
         return String.format("%02d:%02d",
                 TimeUnit.MILLISECONDS.toMinutes(millis) % 60,
                 TimeUnit.MILLISECONDS.toSeconds(millis) % 60);
+    }
+    private void updateSeekBar() {
+        seekBar.setProgress(mediaPlayer.getCurrentPosition());
+        current.setText(formatTime(mediaPlayer.getCurrentPosition()));
+        updateSeekBar = this::updateSeekBar;
+        handler.postDelayed(updateSeekBar, 1000); // Update every second
     }
 
 
