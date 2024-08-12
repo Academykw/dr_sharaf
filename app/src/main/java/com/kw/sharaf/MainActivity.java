@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         private  Runnable updateSeekBar;
 
         Button play;
-    //int currentSongIndex = 1;
+
     @SuppressLint("UseCompatLoadingForDrawables")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
         current = findViewById(R.id.currentTime);
         total = findViewById(R.id.totalTime);
 
-        //seekBar.setMax(mediaPlayer.getDuration());
 
 
         //Get music from asset folder
@@ -61,8 +60,7 @@ public class MainActivity extends AppCompatActivity {
             for(String file: files){
                 if (!file.endsWith(".mp3") || !file.endsWith(".amr")) {
 
-                   /* String fileN =file.replace(".mp3", "")
-                            .replace(".amr", "");*/
+
                     musicFiles.add(file);
 
                 }
@@ -182,21 +180,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        //set up prev button
-        /*prev.setOnClickListener(view -> {
-            int currentPosition = musicListView.getSelectedItemPosition();
-            if (currentPosition > 0){
-                musicListView.setSelection(currentPosition-1);
-                try {
-                    mediaPlayer.reset();
-                    mediaPlayer.setDataSource(getAssets().openFd(musicFiles.get(currentPosition=-1)).getFileDescriptor());
-                    mediaPlayer.prepare();
-                    mediaPlayer.start();
-                } catch (IOException e){
-                    e.printStackTrace();
-                }
-            }
-        });*/
 
         //set up next button
         next.setOnClickListener(view ->{
