@@ -30,13 +30,13 @@ public class MainActivity extends AppCompatActivity {
         private MediaPlayer mediaPlayer;
         private SeekBar seekBar;
         private TextView current,total;
-        private ImageButton next,prev;
-         private Handler handler = new Handler();
+        ImageButton next,prev;
+         Handler handler = new Handler();
         private  Runnable updateSeekBar;
 
         Button play;
 
-    @SuppressLint("UseCompatLoadingForDrawables")
+    @SuppressLint({"UseCompatLoadingForDrawables", "SetTextI18n"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -85,15 +85,12 @@ public class MainActivity extends AppCompatActivity {
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
 
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                seekBar.setMax(mediaPlayer.getDuration());
-                int totalTime = mediaPlayer.getDuration();
-                total.setText(formatTime(totalTime));
-                updateSeekBar();
+        mediaPlayer.setOnPreparedListener(mp -> {
+            seekBar.setMax(mediaPlayer.getDuration());
+            int totalTime = mediaPlayer.getDuration();
+            total.setText(formatTime(totalTime));
+            updateSeekBar();
 
-            }
         });
 
         musicListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

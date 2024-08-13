@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 public class Splash extends AppCompatActivity {
-    private  static  final int  Delayed_time = 2700;
+    private  static  final int  Delayed_time = 2000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,13 +15,10 @@ public class Splash extends AppCompatActivity {
 
         setContentView(R.layout.splash_screen);
 
-         new Handler().postDelayed(new Runnable() {
-             @Override
-             public void run() {
-                 Intent intent = new Intent(Splash.this, MainActivity.class);
-                         startActivity(intent);
-                         finish();
-             }
+         new Handler().postDelayed(() -> {
+             Intent intent = new Intent(Splash.this, MainActivity.class);
+                     startActivity(intent);
+                     finish();
          },Delayed_time
          );
 
