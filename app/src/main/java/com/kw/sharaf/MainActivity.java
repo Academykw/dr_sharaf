@@ -171,15 +171,6 @@ public class MainActivity extends AppCompatActivity {
             updateSeekBar();
            // handler.removeCallbacks(updateSeekBar);
 
-                }
-
-        );
-
-
-
-
-        //set up next button
-        next.setOnClickListener(view ->{
             int currentPosition = musicListView.getSelectedItemPosition();
             if (currentPosition < musicFiles.size()-1){
                 musicListView.setSelection(currentPosition + 1);
@@ -193,7 +184,37 @@ public class MainActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
+
+                }
+
+        );
+        // previous
+        prev.setOnClickListener(v -> {
+
+
+        });
+
+
+
+
+        //set up next button
+        next.setOnClickListener(view ->{
+            int currentPosition = musicListView.getSelectedItemPosition();
+            if (currentPosition > 0){
+                musicListView.setSelection(currentPosition - 1);
+                try {
+                    mediaPlayer.reset();
+                    mediaPlayer.setDataSource(getAssets().openFd(  "music/" + musicFiles.get(currentPosition + 1)).getFileDescriptor());
+                    mediaPlayer.prepare();
+                    mediaPlayer.start();
+                    play.setBackground(getDrawable(R.drawable.pause));
+                }catch (IOException e){
+                    e.printStackTrace();
+                }
+            }
         } );
+
+
 
 
 
@@ -210,6 +231,7 @@ public class MainActivity extends AppCompatActivity {
         updateSeekBar = this::updateSeekBar;
         handler.postDelayed(updateSeekBar, 1000); // Update every second
     }
+
 
 
 }
