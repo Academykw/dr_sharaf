@@ -83,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
                //set up music player
         mediaPlayer = new MediaPlayer();
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mediaPlayer.prepareAsync();
 
 
         mediaPlayer.setOnPreparedListener(mp -> {
@@ -230,6 +231,14 @@ public class MainActivity extends AppCompatActivity {
         current.setText(formatTime(mediaPlayer.getCurrentPosition()));
         updateSeekBar = this::updateSeekBar;
         handler.postDelayed(updateSeekBar, 1000); // Update every second
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
     }
 
 
