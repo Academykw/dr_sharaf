@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 
 public class Splash extends AppCompatActivity {
-    private  static  final int  Delayed_time = 2150;
+    private  static  final int  Delayed_time = 2100;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
